@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw73p47we5tln"]
+
+[ext_resource type="Script" path="res://Transition.gd" id="1_tjd2q"]
+[ext_resource type="Shader" path="res://Circle.gdshader" id="2_n4iu2"]
+[ext_resource type="Texture2D" uid="uid://b6ox1jcqwm73p" path="res://Common/1x1.png" id="3_a6ums"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0b56"]
+shader = ExtResource("2_n4iu2")
+shader_parameter/progress = 0.0
+shader_parameter/fade = 1.0
+
+[node name="Transition" type="CanvasLayer"]
+script = ExtResource("1_tjd2q")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+material = SubResource("ShaderMaterial_r0b56")
+position = Vector2(320, 180)
+scale = Vector2(700, 700)
+texture = ExtResource("3_a6ums")

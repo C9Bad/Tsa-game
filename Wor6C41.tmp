@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dor65h3i64sma"]
+
+[ext_resource type="Script" path="res://World.gd" id="1_js1io"]
+[ext_resource type="PackedScene" uid="uid://bwv6muafhj4nf" path="res://Character.tscn" id="2_hc8i3"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_js1io")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="EnemyHandler" type="Node2D" parent="."]
+position = Vector2(732, 136)
+scale = Vector2(0.391348, -5.74067e-05)
+
+[node name="Character" parent="." instance=ExtResource("2_hc8i3")]
+position = Vector2(126, 136)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

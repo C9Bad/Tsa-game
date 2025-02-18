@@ -1,0 +1,205 @@
+[gd_scene load_steps=28 format=3 uid="uid://d4cs8jqnqwetr"]
+
+[ext_resource type="VideoStream" path="res://Assets/Title screen.ogv" id="1_8jegl"]
+[ext_resource type="Script" path="res://Stages/Title Screen/title_screen.gd" id="1_hpq2s"]
+[ext_resource type="Script" path="res://Stages/Title Screen/start_button.gd" id="2_qk4lv"]
+[ext_resource type="Script" path="res://Stages/Title Screen/tutorial_button.gd" id="3_383mh"]
+[ext_resource type="Texture2D" path="res://Assets/Common/Star9600x640.png" id="5_ru630"]
+[ext_resource type="Texture2D" uid="uid://b3rulcbvrbbta" path="res://Assets/Common/Star4800x320.png" id="6_psuwl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jet5"]
+atlas = ExtResource("5_ru630")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3bl8"]
+atlas = ExtResource("5_ru630")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyy71"]
+atlas = ExtResource("5_ru630")
+region = Rect2(1280, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sopn"]
+atlas = ExtResource("5_ru630")
+region = Rect2(1920, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqphd"]
+atlas = ExtResource("5_ru630")
+region = Rect2(2560, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwmi7"]
+atlas = ExtResource("5_ru630")
+region = Rect2(3200, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqagc"]
+atlas = ExtResource("5_ru630")
+region = Rect2(3840, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dleq6"]
+atlas = ExtResource("5_ru630")
+region = Rect2(4480, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x13nq"]
+atlas = ExtResource("5_ru630")
+region = Rect2(5120, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xddht"]
+atlas = ExtResource("5_ru630")
+region = Rect2(5760, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpoyx"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjxjd"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hevut"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(640, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqv5k"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(960, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diopk"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(1280, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toewn"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(1600, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e3yj"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(1920, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq75a"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(2240, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gcaa"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(2560, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsco6"]
+atlas = ExtResource("6_psuwl")
+region = Rect2(2880, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ykh0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jet5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3bl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyy71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sopn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqphd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwmi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqagc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dleq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x13nq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xddht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpoyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjxjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hevut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqv5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diopk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toewn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e3yj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq75a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gcaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsco6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Title Screen" type="Node2D"]
+script = ExtResource("1_hpq2s")
+
+[node name="Title Video" type="VideoStreamPlayer" parent="."]
+texture_filter = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+stream = ExtResource("1_8jegl")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Start Button" type="Button" parent="Title Video"]
+modulate = Color(1, 1, 0, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 46.0
+offset_top = 126.0
+offset_right = 404.0
+offset_bottom = 276.0
+script = ExtResource("2_qk4lv")
+
+[node name="Tutorial Button" type="Button" parent="Title Video"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 520.0
+offset_top = 649.0
+offset_right = 783.0
+offset_bottom = 716.0
+script = ExtResource("3_383mh")
+
+[node name="Star2" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(336, 134)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_0ykh0")
+frame_progress = 0.565132
+
+[node name="Star" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(751, 642)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_0ykh0")
+frame_progress = 0.138742
+
+[connection signal="pressed" from="Title Video/Start Button" to="Title Video/Start Button" method="_on_pressed"]
+[connection signal="pressed" from="Title Video/Tutorial Button" to="Title Video/Tutorial Button" method="_on_pressed"]

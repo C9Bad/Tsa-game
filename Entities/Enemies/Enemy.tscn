@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://btvhbcydwnyla"]
+
+[ext_resource type="Texture2D" uid="uid://7mboatauh0wh" path="res://icon.svg" id="2_d0msa"]
+
+[sub_resource type="GDScript" id="GDScript_048ps"]
+script/source = "extends Area2D
+
+# You can change the enemy's speed in the Inspector
+@export var speed: float = 200.0
+
+func _process(delta: float) -> void:
+	position.x -= speed * delta  # Moves at 'speed' pixels per second
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4y1r"]
+size = Vector2(99, 67)
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+collision_layer = 2
+script = SubResource("GDScript_048ps")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_d0msa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -4)
+shape = SubResource("RectangleShape2D_i4y1r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-3, -3.69355)
+scale = Vector2(5.3, 6.06935)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

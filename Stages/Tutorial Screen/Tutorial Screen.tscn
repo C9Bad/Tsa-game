@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://1qm04j8faqi6"]
+
+[ext_resource type="VideoStream" path="res://Assets/Tutorial1.ogv" id="1_asc2m"]
+[ext_resource type="Script" path="res://Stages/Tutorial Screen/next_button.gd" id="2_h8e7u"]
+[ext_resource type="Texture2D" uid="uid://siaqwg2ea8p8" path="res://Assets/Common/Next.png" id="3_v0l6y"]
+
+[node name="TutorialScreen" type="Node2D"]
+
+[node name="Tutorial Video" type="VideoStreamPlayer" parent="."]
+texture_filter = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+stream = ExtResource("1_asc2m")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Next Button" type="Button" parent="Tutorial Video"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 634.0
+offset_right = 1246.0
+offset_bottom = 710.0
+script = ExtResource("2_h8e7u")
+
+[node name="Next" type="Sprite2D" parent="."]
+position = Vector2(1130, 612)
+texture = ExtResource("3_v0l6y")
+
+[connection signal="pressed" from="Tutorial Video/Next Button" to="Tutorial Video/Next Button" method="_on_pressed"]

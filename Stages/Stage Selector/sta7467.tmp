@@ -1,0 +1,250 @@
+[gd_scene load_steps=23 format=3 uid="uid://2vhlerunndgh"]
+
+[ext_resource type="Script" path="res://Stages/Stage Selector/stage_selector.gd" id="1_h8n7o"]
+[ext_resource type="VideoStream" path="res://Assets/Common/GreenBackground.ogv" id="2_uyx1b"]
+[ext_resource type="Script" path="res://Stages/Stage Selector/control.gd" id="3_pk2d1"]
+[ext_resource type="Texture2D" uid="uid://cfchdtgpaylse" path="res://Assets/Stage Selection/Map0starstage0.PNG" id="3_wfrs0"]
+[ext_resource type="Texture2D" uid="uid://b3rulcbvrbbta" path="res://Assets/Common/Star4800x320.png" id="5_thn1d"]
+[ext_resource type="Texture2D" uid="uid://clw18argx5tks" path="res://Assets/Common/Lock.png" id="6_gunw5"]
+[ext_resource type="Texture2D" uid="uid://d23bppmlqaiuh" path="res://Assets/Common/Back button.png" id="7_j5vnx"]
+[ext_resource type="Script" path="res://Stages/Stage Selector/back_button.gd" id="8_l1ufv"]
+
+[sub_resource type="Animation" id="Animation_ksuac"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gkuv6"]
+resource_name = "rotation_animation"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0523599, 0.0523599, -0.0523599]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r3v7j"]
+_data = {
+"RESET": SubResource("Animation_ksuac"),
+"rotation_animation": SubResource("Animation_gkuv6")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5leu"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6aee"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmxls"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(640, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrf03"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(960, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f78lh"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(1280, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h7hf"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(1600, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjnfy"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(1920, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa85p"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(2240, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lukhs"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(2560, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o84cx"]
+atlas = ExtResource("5_thn1d")
+region = Rect2(2880, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h360p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5leu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6aee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmxls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrf03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f78lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h7hf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjnfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa85p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lukhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o84cx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="StageSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h8n7o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r3v7j")
+}
+
+[node name="Background" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1281.0
+offset_bottom = 721.0
+stream = ExtResource("2_uyx1b")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.056
+anchor_right = 0.5
+anchor_bottom = 0.056
+offset_top = -5.32
+offset_right = 113.0
+offset_bottom = 24.68
+script = ExtResource("3_pk2d1")
+
+[node name="Sign" type="Sprite2D" parent="Control"]
+position = Vector2(-1.77771, 324)
+scale = Vector2(0.797778, 0.797778)
+texture = ExtResource("3_wfrs0")
+
+[node name="Star1" type="AnimatedSprite2D" parent="Control"]
+visible = false
+texture_filter = 1
+position = Vector2(-215.056, 301.158)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_h360p")
+frame_progress = 0.527652
+
+[node name="Button1" type="Button" parent="Control"]
+modulate = Color(0.298039, 0.32549, 0.368627, 0)
+layout_mode = 0
+offset_left = -340.373
+offset_top = 227.498
+offset_right = -132.373
+offset_bottom = 432.498
+
+[node name="Star2" type="AnimatedSprite2D" parent="Control"]
+visible = false
+texture_filter = 1
+position = Vector2(26, 305)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_h360p")
+frame_progress = 0.590256
+
+[node name="Button2" type="Button" parent="Control"]
+modulate = Color(0.298039, 0.32549, 0.368627, 0)
+layout_mode = 0
+offset_left = -86.7733
+offset_top = 241.79
+offset_right = 73.2267
+offset_bottom = 416.79
+
+[node name="Star3" type="AnimatedSprite2D" parent="Control"]
+visible = false
+texture_filter = 1
+position = Vector2(253.899, 180.535)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_h360p")
+frame_progress = 0.759876
+
+[node name="Button3" type="Button" parent="Control"]
+modulate = Color(0.298039, 0.32549, 0.368627, 0)
+layout_mode = 0
+offset_left = 145.799
+offset_top = 138.161
+offset_right = 320.799
+offset_bottom = 384.161
+
+[node name="Lock2" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(492, 273)
+scale = Vector2(0.306536, 0.306536)
+texture = ExtResource("6_gunw5")
+
+[node name="Lock3" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(258, 396)
+scale = Vector2(0.306536, 0.306536)
+texture = ExtResource("6_gunw5")
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(798, 453)
+texture = ExtResource("7_j5vnx")
+
+[node name="BackButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 12.0
+offset_right = 139.0
+offset_bottom = 69.0
+script = ExtResource("8_l1ufv")
+
+[connection signal="mouse_entered" from="Control/Button1" to="." method="_on_stage_1_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button1" to="." method="_on_stage_1_mouse_exited"]
+[connection signal="pressed" from="Control/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="mouse_entered" from="Control/Button2" to="." method="_on_stage_3_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button2" to="." method="_on_stage_3_mouse_exited"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="mouse_entered" from="Control/Button3" to="." method="_on_stage_2_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button3" to="." method="_on_stage_2_mouse_exited"]
+[connection signal="pressed" from="Control/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]

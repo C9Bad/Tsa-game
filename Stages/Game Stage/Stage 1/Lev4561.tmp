@@ -1,0 +1,203 @@
+[gd_scene load_steps=21 format=3 uid="uid://dor65h3i64sma"]
+
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/Level1.gd" id="1_nctc5"]
+[ext_resource type="PackedScene" uid="uid://crik77adbsgk3" path="res://Entities/LocalPlayers/Character 2/Character 2.tscn" id="2_xkmmv"]
+[ext_resource type="PackedScene" uid="uid://bwv6muafhj4nf" path="res://Entities/LocalPlayers/Character 1/Character 1.tscn" id="2_xtw13"]
+[ext_resource type="VideoStream" path="res://Assets/Stages/Stage1.ogv" id="4_i5day"]
+[ext_resource type="Texture2D" uid="uid://d23bppmlqaiuh" path="res://Assets/Common/Back button.png" id="5_ij0i1"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/back_button.gd" id="6_jd85c"]
+[ext_resource type="VideoStream" path="res://Assets/Stages/Stage1tutorial.ogv" id="7_48t0b"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/control.gd" id="7_iosk3"]
+[ext_resource type="Shader" path="res://Stages/Game Stage/Stage 1/ChromaKeyShader.gdshader" id="7_y6gdd"]
+[ext_resource type="Texture2D" uid="uid://siaqwg2ea8p8" path="res://Assets/Common/Next.png" id="8_qhhfp"]
+[ext_resource type="Script" path="res://addons/radial_progress/RadialProgress.gd" id="11_vierq"]
+[ext_resource type="Texture2D" uid="uid://bv6inr2oxvre2" path="res://Assets/Stages/Stage1complete.png" id="12_7u32j"]
+[ext_resource type="Texture2D" uid="uid://q6gmm83wg5ls" path="res://Assets/Stages/Stage1incomplete.png" id="12_s7jh7"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/start_ui.gd" id="12_yqqyq"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/death_zone.gd" id="13_0y6rh"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/win_ui.gd" id="14_bf614"]
+[ext_resource type="AudioStream" uid="uid://dhjxxfpcdb6i6" path="res://Assets/Sounds/deathSound.ogg" id="17_k71un"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0354m"]
+shader = ExtResource("7_y6gdd")
+shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
+shader_parameter/threshold = 0.56
+shader_parameter/smoothness = 0.128
+
+[sub_resource type="SystemFont" id="SystemFont_oocic"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tm06d"]
+font = SubResource("SystemFont_oocic")
+font_size = 25
+outline_color = Color(0.89007, 0.8924, 0.708932, 1)
+shadow_size = 0
+shadow_color = Color(0, 0.254902, 0, 1)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_nctc5")
+
+[node name="Enemy Spawn" type="Timer" parent="."]
+autostart = true
+
+[node name="Game Background" type="VideoStreamPlayer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+stream = ExtResource("4_i5day")
+autoplay = true
+expand = true
+loop = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Character 2" parent="." groups=["player"] instance=ExtResource("2_xkmmv")]
+position = Vector2(369, 196)
+speed = 0.0
+knockback_force = null
+knockback_duration = null
+
+[node name="Character 1" parent="." groups=["player"] instance=ExtResource("2_xtw13")]
+position = Vector2(363, 602)
+speed = 0.0
+
+[node name="Tutorial Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_iosk3")
+
+[node name="Stage Tutorial" type="VideoStreamPlayer" parent="Tutorial Control"]
+material = SubResource("ShaderMaterial_0354m")
+layout_mode = 0
+offset_left = -16.0
+offset_right = 1264.0
+offset_bottom = 720.0
+stream = ExtResource("7_48t0b")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Next" type="Sprite2D" parent="Tutorial Control"]
+position = Vector2(1157, 610)
+texture = ExtResource("8_qhhfp")
+
+[node name="Next Button" type="Button" parent="Tutorial Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1051.0
+offset_top = 629.0
+offset_right = 1272.0
+offset_bottom = 707.0
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(798, 453)
+texture = ExtResource("5_ij0i1")
+
+[node name="Back Button" type="Button" parent="Back"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -792.0
+offset_top = -439.0
+offset_right = -662.0
+offset_bottom = -381.0
+script = ExtResource("6_jd85c")
+
+[node name="Game Timer" type="Timer" parent="."]
+
+[node name="Timer UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimerLabel" type="Label" parent="Timer UI"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 632.0
+offset_right = 115.0
+offset_bottom = 694.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_tm06d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RadialProgress" type="Control" parent="Timer UI"]
+anchors_preset = 0
+offset_left = 72.0
+offset_top = 664.0
+offset_right = 112.0
+offset_bottom = 704.0
+script = ExtResource("11_vierq")
+max_value = 45.0
+radius = 35.0
+thickness = 6.0
+bg_color = Color(0.501961, 0.501961, 0.501961, 0.313726)
+bar_color = Color(0.955754, 0.639961, 0.794724, 1)
+ring = true
+
+[node name="Start UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("12_yqqyq")
+
+[node name="Picture" type="Sprite2D" parent="Start UI"]
+position = Vector2(744, 360)
+texture = ExtResource("12_s7jh7")
+
+[node name="Retry" type="Button" parent="Start UI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 168.0
+offset_right = 936.0
+offset_bottom = 232.0
+
+[node name="Win UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_bf614")
+
+[node name="Picture" type="Sprite2D" parent="Win UI"]
+position = Vector2(744, 360)
+texture = ExtResource("12_7u32j")
+
+[node name="Exit" type="Button" parent="Win UI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 168.0
+offset_right = 936.0
+offset_bottom = 232.0
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_k71un")
+volume_db = -20.67
+pitch_scale = 2.0
+
+[node name="DeathZone" type="Area2D" parent="."]
+script = ExtResource("13_0y6rh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeathZone"]
+position = Vector2(-16, -16)
+polygon = PackedVector2Array(128, 320, 128, 456, 488, 520, 80, 664, 80, 768, -136, 768, -128, -8, 1280, 0, 1432, 168, 1176, 80, 1104, 64, 992, 56, 832, 56, 736, 72, 632, 88, 544, 104, 488, 120, 424, 144, 336, 184, 264, 232, 192, 272, 168, 288)
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundary"]
+polygon = PackedVector2Array(-64, 720, 1280, 720, 1280, -48, 1672, -32, 1600, 808, -32, 816)
+
+[connection signal="timeout" from="Enemy Spawn" to="." method="_on_enemy_spawn_timeout"]
+[connection signal="pressed" from="Tutorial Control/Next Button" to="Tutorial Control" method="_on_next_button_pressed"]
+[connection signal="pressed" from="Back/Back Button" to="Back/Back Button" method="_on_pressed"]
+[connection signal="timeout" from="Game Timer" to="." method="_on_game_timer_timeout"]
+[connection signal="pressed" from="Start UI/Retry" to="Start UI" method="_on_retry_pressed"]
+[connection signal="pressed" from="Win UI/Exit" to="Win UI" method="_on_exit_pressed"]
+[connection signal="area_entered" from="DeathZone" to="DeathZone" method="_on_area_entered"]

@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://divj0r17avlw5"]
+
+[ext_resource type="Texture2D" uid="uid://hf3pb75ej3ih" path="res://Assets/Enemys/Enemy_Fish.png" id="1_sx185"]
+
+[sub_resource type="GDScript" id="GDScript_048ps"]
+script/source = "extends Area2D
+
+# You can change the enemy's speed in the Inspector
+@export var speed: float = 200.0
+
+func _process(delta: float) -> void:
+	position.x -= speed * delta  # Moves at 'speed' pixels per second
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4y1r"]
+size = Vector2(99, 94.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mnpj"]
+atlas = ExtResource("1_sx185")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00ow5"]
+atlas = ExtResource("1_sx185")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q56sr"]
+atlas = ExtResource("1_sx185")
+region = Rect2(1280, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okgos"]
+atlas = ExtResource("1_sx185")
+region = Rect2(1920, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu1hs"]
+atlas = ExtResource("1_sx185")
+region = Rect2(2560, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr7vr"]
+atlas = ExtResource("1_sx185")
+region = Rect2(3200, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8bcu"]
+atlas = ExtResource("1_sx185")
+region = Rect2(3840, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwlo3"]
+atlas = ExtResource("1_sx185")
+region = Rect2(4480, 0, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g5ium"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mnpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ow5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q56sr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okgos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu1hs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr7vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8bcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwlo3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+collision_layer = 2
+script = SubResource("GDScript_048ps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 9.75)
+shape = SubResource("RectangleShape2D_i4y1r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.499996, 9.49997)
+scale = Vector2(5.05, 4.75)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.5, 0.5)
+scale = Vector2(0.157812, 0.157812)
+sprite_frames = SubResource("SpriteFrames_g5ium")
+frame_progress = 0.657413
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

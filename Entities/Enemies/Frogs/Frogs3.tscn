@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://clr2bp67auga2"]
+
+[ext_resource type="Texture2D" uid="uid://s21iedpu1gwp" path="res://Assets/Enemys/Enemy_PinkFrog.png" id="1_w2cmp"]
+
+[sub_resource type="GDScript" id="GDScript_048ps"]
+script/source = "extends Area2D
+
+# You can change the enemy's speed in the Inspector
+@export var speed: float = 200.0
+
+func _process(delta: float) -> void:
+	position.x -= speed * delta  # Moves at 'speed' pixels per second
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4y1r"]
+size = Vector2(99, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf0vq"]
+atlas = ExtResource("1_w2cmp")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0crsi"]
+atlas = ExtResource("1_w2cmp")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjuwm"]
+atlas = ExtResource("1_w2cmp")
+region = Rect2(1280, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlear"]
+atlas = ExtResource("1_w2cmp")
+region = Rect2(1920, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j3n0"]
+atlas = ExtResource("1_w2cmp")
+region = Rect2(2560, 0, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j55o8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf0vq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0crsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjuwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlear")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j3n0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+collision_layer = 2
+script = SubResource("GDScript_048ps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4.5)
+shape = SubResource("RectangleShape2D_i4y1r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.500001, 5)
+scale = Vector2(5.05, 3.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.146875, 0.146875)
+sprite_frames = SubResource("SpriteFrames_j55o8")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

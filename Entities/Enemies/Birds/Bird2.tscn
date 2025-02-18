@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://2jvfq5wtxb36"]
+
+[ext_resource type="Texture2D" uid="uid://q6o7e0hg0kmw" path="res://Assets/Enemys/Enemy_GreenBird.png" id="1_yfrf1"]
+
+[sub_resource type="GDScript" id="GDScript_048ps"]
+script/source = "extends Area2D
+
+# You can change the enemy's speed in the Inspector
+@export var speed: float = 200.0
+
+func _process(delta: float) -> void:
+	position.x -= speed * delta  # Moves at 'speed' pixels per second
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4y1r"]
+size = Vector2(52, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g0bc"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp7fn"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a76e4"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(1280, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loc3l"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(1920, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvj1x"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(2560, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yy3g"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(3200, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3uor"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(3840, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37qth"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(4480, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hllqt"]
+atlas = ExtResource("1_yfrf1")
+region = Rect2(5120, 0, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqd27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g0bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp7fn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a76e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loc3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvj1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yy3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3uor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37qth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hllqt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Enemy" type="Area2D" groups=["enemies"]]
+collision_layer = 2
+script = SubResource("GDScript_048ps")
+speed = 350.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i4y1r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.499999, -0.0972211)
+scale = Vector2(2.55, 2.05417)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.5, -0.499996)
+scale = Vector2(0.0828125, 0.0828125)
+sprite_frames = SubResource("SpriteFrames_nqd27")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
