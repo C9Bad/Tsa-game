@@ -180,7 +180,6 @@ offset_bottom = 232.0
 [node name="DeathSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_siwgm")
 volume_db = -20.67
-pitch_scale = 2.0
 
 [node name="DeathZone" type="Area2D" parent="."]
 script = ExtResource("17_gljeo")

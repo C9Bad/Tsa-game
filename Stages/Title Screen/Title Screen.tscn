@@ -1,50 +1,49 @@
-[gd_scene load_steps=28 format=3 uid="uid://d4cs8jqnqwetr"]
+[gd_scene load_steps=27 format=3 uid="uid://d4cs8jqnqwetr"]
 
 [ext_resource type="VideoStream" path="res://Assets/Title screen.ogv" id="1_8jegl"]
 [ext_resource type="Script" path="res://Stages/Title Screen/title_screen.gd" id="1_hpq2s"]
 [ext_resource type="Script" path="res://Stages/Title Screen/start_button.gd" id="2_qk4lv"]
 [ext_resource type="Script" path="res://Stages/Title Screen/tutorial_button.gd" id="3_383mh"]
-[ext_resource type="Texture2D" uid="uid://b3rulcbvrbbta" path="res://Assets/Common/Star4800x320.png" id="5_ru630"]
 [ext_resource type="Texture2D" uid="uid://b3rulcbvrbbta" path="res://Assets/Common/Star4800x320.png" id="6_psuwl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jet5"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(0, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3bl8"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(640, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pyy71"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(1280, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1sopn"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(1920, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqphd"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(2560, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qwmi7"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(3200, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqagc"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(3840, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dleq6"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(4480, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x13nq"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(5120, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xddht"]
-atlas = ExtResource("5_ru630")
+atlas = ExtResource("6_psuwl")
 region = Rect2(5760, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpoyx"]
