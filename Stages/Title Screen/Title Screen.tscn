@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Stages/Title Screen/title_screen.gd" id="1_hpq2s"]
 [ext_resource type="Script" path="res://Stages/Title Screen/start_button.gd" id="2_qk4lv"]
 [ext_resource type="Script" path="res://Stages/Title Screen/tutorial_button.gd" id="3_383mh"]
-[ext_resource type="Texture2D" path="res://Assets/Common/Star9600x640.png" id="5_ru630"]
+[ext_resource type="Texture2D" uid="uid://b3rulcbvrbbta" path="res://Assets/Common/Star4800x320.png" id="5_ru630"]
 [ext_resource type="Texture2D" uid="uid://b3rulcbvrbbta" path="res://Assets/Common/Star4800x320.png" id="6_psuwl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jet5"]
