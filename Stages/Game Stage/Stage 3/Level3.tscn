@@ -110,8 +110,10 @@ script = ExtResource("10_uviqc")
 [node name="Timer UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1133.0
+offset_top = -597.0
+offset_right = 1231.0
+offset_bottom = -330.0
 
 [node name="TimerLabel" type="Label" parent="Timer UI"]
 layout_mode = 0

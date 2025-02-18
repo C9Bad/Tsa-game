@@ -16,7 +16,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4y1r"]
-size = Vector2(99, 67)
+size = Vector2(99, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o18wa"]
 atlas = ExtResource("1_8co2g")
@@ -66,12 +66,12 @@ collision_layer = 2
 script = SubResource("GDScript_048ps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 4.5)
+position = Vector2(-0.5, 19.5)
 shape = SubResource("RectangleShape2D_i4y1r")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-0.500001, 5)
-scale = Vector2(5.05, 3.5)
+position = Vector2(-0.500001, 20.5)
+scale = Vector2(5.05, 1.95)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.146875, 0.146875)
