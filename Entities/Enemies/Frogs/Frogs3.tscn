@@ -16,7 +16,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4y1r"]
-size = Vector2(185, 71)
+size = Vector2(161, 71)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sf0vq"]
 atlas = ExtResource("1_w2cmp")

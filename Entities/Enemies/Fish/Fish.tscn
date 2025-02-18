@@ -15,9 +15,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4y1r"]
-size = Vector2(282, 246)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1mnpj"]
 atlas = ExtResource("1_sx185")
 region = Rect2(0, 0, 640, 640)
@@ -82,13 +79,13 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vugj1"]
+radius = 107.0
+height = 234.0
+
 [node name="Enemy" type="Area2D" groups=["enemies"]]
 collision_layer = 2
 script = SubResource("GDScript_048ps")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 18)
-shape = SubResource("RectangleShape2D_i4y1r")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-2.99999, 17.8267)
@@ -99,5 +96,10 @@ position = Vector2(-0.500006, -0.500006)
 scale = Vector2(0.467187, 0.467187)
 sprite_frames = SubResource("SpriteFrames_g5ium")
 frame_progress = 0.657413
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 13)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vugj1")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

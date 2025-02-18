@@ -186,8 +186,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcfuu"]
-radius = 29.0
-height = 96.0
+radius = 12.0
+height = 62.0
 
 [node name="Character 2" type="Area2D"]
 collision_mask = 2
