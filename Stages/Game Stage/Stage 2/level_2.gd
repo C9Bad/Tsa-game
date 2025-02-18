@@ -38,7 +38,7 @@ func _on_enemy_spawn_timeout() -> void:
 	$Enemies.add_child(enemy)
 	
 	var screen_size = get_viewport_rect().size
-	enemy.position = Vector2(screen_size.x + 30, randf_range(0, screen_size.y))
+	enemy.position = Vector2(screen_size.x + 100, randf_range(0, screen_size.y))
 	
 	var total_frames = 5
 	var anim_sprite = enemy.get_node("AnimatedSprite2D")

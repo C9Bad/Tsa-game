@@ -23,8 +23,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0354m"]
 shader = ExtResource("6_vqcai")
 shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
-shader_parameter/threshold = 0.56
-shader_parameter/smoothness = 0.128
+shader_parameter/threshold = 0.713
+shader_parameter/smoothness = 0.2
 
 [sub_resource type="SystemFont" id="SystemFont_oocic"]
 subpixel_positioning = 0

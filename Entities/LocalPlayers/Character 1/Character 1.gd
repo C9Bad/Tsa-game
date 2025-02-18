@@ -21,16 +21,16 @@ func _process(delta):
 	velocity = Vector2.ZERO
 
 	if Input.is_action_pressed("p1_up"):
-		velocity.y = -speed
+		velocity.y = -1
 	elif Input.is_action_pressed("p1_down"):
-		velocity.y = speed
+		velocity.y = 1
 
 	if Input.is_action_pressed("p1_left"):
-		velocity.x = -speed
+		velocity.x = -1
 		animated_sprite.play("side") 
 		animated_sprite.flip_h = true 
 	elif Input.is_action_pressed("p1_right"):
-		velocity.x = speed
+		velocity.x = 1
 		animated_sprite.play("side") 
 		animated_sprite.flip_h = false  
 
@@ -42,11 +42,14 @@ func _process(delta):
 	if velocity == Vector2.ZERO:
 		animated_sprite.stop()
 
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+
 	position += velocity * delta
 	
 	var screen_size = get_viewport_rect().size
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+	position.x = clamp(position.x, 60, screen_size.x - 60)
+	position.y = clamp(position.y, 60, screen_size.y - 60)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("entered")

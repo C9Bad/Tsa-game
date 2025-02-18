@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://divj0r17avlw5"]
+[gd_scene load_steps=14 format=3 uid="uid://divj0r17avlw5"]
 
 [ext_resource type="Texture2D" uid="uid://hf3pb75ej3ih" path="res://Assets/Enemys/Enemy_Fish.png" id="1_sx185"]
 
@@ -7,12 +7,20 @@ script/source = "extends Area2D
 
 # You can change the enemy's speed in the Inspector
 @export var speed: float = 200.0
+@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _process(delta: float) -> void:
 	position.x -= speed * delta  # Moves at 'speed' pixels per second
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+
+# Function to stop the enemy's animation
+func stop_animation() -> void:
+	if anim_sprite:
+		var current_frame = anim_sprite.frame
+		anim_sprite.stop()  # stops the animation (freezes on the current frame)
+		anim_sprite.frame = current_frame  # ensures it stays on that frame
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1mnpj"]
@@ -83,9 +91,13 @@ animations = [{
 radius = 107.0
 height = 234.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gylmh"]
+size = Vector2(110, 14)
+
 [node name="Enemy" type="Area2D" groups=["enemies"]]
 collision_layer = 2
 script = SubResource("GDScript_048ps")
+speed = 125.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-2.99999, 17.8267)
@@ -101,5 +113,13 @@ frame_progress = 0.657413
 position = Vector2(2, 13)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vugj1")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
+collision_layer = 4
+collision_mask = 4
+
+[node name="death shape" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 134)
+shape = SubResource("RectangleShape2D_gylmh")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

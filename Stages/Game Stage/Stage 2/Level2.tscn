@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1cjrsl406abn"]
+[gd_scene load_steps=24 format=3 uid="uid://d1cjrsl406abn"]
 
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 2/level_2.gd" id="1_m0xeb"]
 [ext_resource type="VideoStream" path="res://Assets/Stages/Stage2.ogv" id="2_7bluq"]
@@ -19,12 +19,13 @@
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 2/death_zone.gd" id="17_gljeo"]
 [ext_resource type="AudioStream" uid="uid://bdirvunnr7eil" path="res://Assets/Sounds/win.wav" id="18_chl60"]
 [ext_resource type="AudioStream" uid="uid://cxi1eg3ytw5lb" path="res://Assets/Sounds/lose.wav" id="19_j2wju"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 2/enemy_death_zone.gd" id="20_ryb7j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0354m"]
 shader = ExtResource("6_8lcs6")
 shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
-shader_parameter/threshold = 0.56
-shader_parameter/smoothness = 0.128
+shader_parameter/threshold = 0.713
+shader_parameter/smoothness = 0.2
 
 [sub_resource type="SystemFont" id="SystemFont_oocic"]
 subpixel_positioning = 0
@@ -182,6 +183,7 @@ stream = ExtResource("16_siwgm")
 volume_db = -20.67
 
 [node name="DeathZone" type="Area2D" parent="."]
+visible = false
 script = ExtResource("17_gljeo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeathZone"]
@@ -196,6 +198,15 @@ volume_db = -20.0
 stream = ExtResource("19_j2wju")
 volume_db = -20.0
 
+[node name="EnemyDeathZone" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("20_ryb7j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyDeathZone"]
+position = Vector2(21, -31)
+polygon = PackedVector2Array(-69, 238, 31, 320, 73, 401, 135, 418, 247, 423, 406, 488, 401, 624, 523, 682, 706, 694, 769, 737, 777, 1005, 1573, 767, 1566, -70, -62, -42)
+
 [connection signal="timeout" from="Enemy Spawn" to="." method="_on_enemy_spawn_timeout"]
 [connection signal="pressed" from="Tutorial Control/Next Button" to="Tutorial Control" method="_on_next_button_pressed"]
 [connection signal="pressed" from="Back/Back Button" to="Back/Back Button" method="_on_pressed"]
@@ -203,3 +214,4 @@ volume_db = -20.0
 [connection signal="pressed" from="Start UI/Retry" to="Start UI" method="_on_retry_pressed"]
 [connection signal="pressed" from="Win UI/Exit" to="Win UI" method="_on_exit_pressed"]
 [connection signal="area_entered" from="DeathZone" to="DeathZone" method="_on_area_entered"]
+[connection signal="area_exited" from="EnemyDeathZone" to="EnemyDeathZone" method="_on_area_exited"]

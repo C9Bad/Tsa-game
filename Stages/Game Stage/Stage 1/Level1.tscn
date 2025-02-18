@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dor65h3i64sma"]
+[gd_scene load_steps=24 format=3 uid="uid://dor65h3i64sma"]
 
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/Level1.gd" id="1_nctc5"]
 [ext_resource type="PackedScene" uid="uid://crik77adbsgk3" path="res://Entities/LocalPlayers/Character 2/Character 2.tscn" id="2_xkmmv"]
@@ -17,14 +17,15 @@
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/death_zone.gd" id="13_0y6rh"]
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/win_ui.gd" id="14_bf614"]
 [ext_resource type="AudioStream" uid="uid://dhjxxfpcdb6i6" path="res://Assets/Sounds/deathSound.ogg" id="17_k71un"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/enemy_death_zone.gd" id="17_lay7t"]
 [ext_resource type="AudioStream" uid="uid://bdirvunnr7eil" path="res://Assets/Sounds/win.wav" id="18_bm6xg"]
 [ext_resource type="AudioStream" uid="uid://cxi1eg3ytw5lb" path="res://Assets/Sounds/lose.wav" id="19_wwf41"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0354m"]
 shader = ExtResource("7_y6gdd")
 shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
-shader_parameter/threshold = 0.56
-shader_parameter/smoothness = 0.128
+shader_parameter/threshold = 0.713
+shader_parameter/smoothness = 0.2
 
 [sub_resource type="SystemFont" id="SystemFont_oocic"]
 subpixel_positioning = 0
@@ -181,7 +182,17 @@ offset_bottom = 232.0
 stream = ExtResource("17_k71un")
 volume_db = -20.67
 
+[node name="EnemyDeathZone" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("17_lay7t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyDeathZone"]
+position = Vector2(-48, -16)
+polygon = PackedVector2Array(152, 432, 152, 328, 240, 216, 416, 128, 592, 80, 736, 72, 896, 56, 1040, 56, 1280, -72, 1688, -120, 1808, 0, 1864, 304, 1808, 688, 1792, 936, 1496, 1056, 1184, 1064, 960, 1032, 864, 1040, 216, 992, 104, 656, 232, 576, 496, 496)
+
 [node name="DeathZone" type="Area2D" parent="."]
+visible = false
 script = ExtResource("13_0y6rh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeathZone"]
@@ -202,4 +213,5 @@ volume_db = -20.0
 [connection signal="timeout" from="Game Timer" to="." method="_on_game_timer_timeout"]
 [connection signal="pressed" from="Start UI/Retry" to="Start UI" method="_on_retry_pressed"]
 [connection signal="pressed" from="Win UI/Exit" to="Win UI" method="_on_exit_pressed"]
+[connection signal="area_exited" from="EnemyDeathZone" to="EnemyDeathZone" method="_on_area_exited"]
 [connection signal="area_entered" from="DeathZone" to="DeathZone" method="_on_area_entered"]
