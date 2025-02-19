@@ -38,6 +38,7 @@ shader_parameter/smoothness = 0.1
 script = ExtResource("1_nctc5")
 
 [node name="Enemy Spawn" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="Game Background" type="VideoStreamPlayer" parent="."]
@@ -191,6 +192,7 @@ script = ExtResource("21_ynwpn")
 [connection signal="pressed" from="Tutorial Control/Next Button" to="Tutorial Control" method="_on_next_button_pressed"]
 [connection signal="pressed" from="Back/Back Button" to="Back/Back Button" method="_on_pressed"]
 [connection signal="timeout" from="Game Timer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="Game Timer" to="DeathZone" method="_on_game_timer_timeout"]
 [connection signal="pressed" from="Start UI/Retry" to="Start UI" method="_on_retry_pressed"]
 [connection signal="pressed" from="Win UI/Exit" to="Win UI" method="_on_exit_pressed"]
 [connection signal="area_exited" from="EnemyDeathZone" to="EnemyDeathZone" method="_on_area_exited"]

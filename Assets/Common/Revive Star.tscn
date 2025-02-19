@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbkw3y8weqie4"]
+
+[ext_resource type="Shader" path="res://Stages/Game Stage/Stage 1/ChromaKeyShader.gdshader" id="1_4mbtl"]
+[ext_resource type="Script" path="res://Assets/Common/revive_star.gd" id="2_ppuh6"]
+[ext_resource type="VideoStream" path="res://Assets/Common/star.ogv" id="2_wamf7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u556x"]
+shader = ExtResource("1_4mbtl")
+shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
+shader_parameter/threshold = 0.565
+shader_parameter/smoothness = 0.1
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5b7ue"]
+radius = 28.0
+height = 56.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j8vf5"]
+shader = ExtResource("1_4mbtl")
+shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
+shader_parameter/threshold = 0.3
+shader_parameter/smoothness = 0.1
+
+[node name="Revive Star" type="Area2D"]
+material = SubResource("ShaderMaterial_u556x")
+script = ExtResource("2_ppuh6")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5b7ue")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+material = SubResource("ShaderMaterial_j8vf5")
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+stream = ExtResource("2_wamf7")
+autoplay = true
+expand = true
+loop = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

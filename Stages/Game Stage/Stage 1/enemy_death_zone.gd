@@ -34,7 +34,6 @@ func kill_enemy(enemy: Node) -> void:
 
 		var scale_factor = enemy_width / splash_default_width
 		splash.scale = Vector2(scale_factor, scale_factor)
-		print("Splash scale:", splash.scale)
 
 		splash.global_position = base_position + Vector2(0, enemy_height / 2)
 	

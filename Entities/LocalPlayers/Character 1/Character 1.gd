@@ -19,6 +19,7 @@ func _process(delta):
 		return
 
 	velocity = Vector2.ZERO
+	var old_position = position
 
 	if Input.is_action_pressed("p1_up"):
 		velocity.y = -1
@@ -50,6 +51,9 @@ func _process(delta):
 	var screen_size = get_viewport_rect().size
 	position.x = clamp(position.x, 60, screen_size.x - 60)
 	position.y = clamp(position.y, 60, screen_size.y - 60)
+	
+	if get_overlapping_bodies().size() > 0 or get_overlapping_areas().size() > 0:
+		position = old_position
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("entered")

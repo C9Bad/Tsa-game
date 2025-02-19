@@ -58,7 +58,6 @@ func _on_game_timer_timeout():
 
 	if time_left <= 0:
 		stop_game()
-		timer.hide()
 
 func enable_spawning():
 	spawn_enabled = true
@@ -78,8 +77,6 @@ func stop_game():
 
 	var stars_awarded = 3
 
-
-	await get_tree().create_timer(1.0).timeout
 	if Globalvars.player1_dead and Globalvars.player2_dead:
 		stars_awarded = 1
 		lose.play()
