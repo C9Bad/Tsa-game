@@ -19,12 +19,7 @@ func _on_h_slider_2_value_changed(value):
 func _on_video_stream_player_finished():
 	video_player.play() 
 
-func enable_movement():
-	character1.speed = 200
-	character2.speed = 200
-
 func _on_next_button_pressed() -> void:
 	world.enable_spawning() 
-	enable_movement()
 	next_button.hide()
 	tutorial_control.hide()

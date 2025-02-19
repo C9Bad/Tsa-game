@@ -60,3 +60,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
 		is_knocked_back = true
 		knockback_timer = knockback_duration
+
+func spawn_falling_animation():
+	var target_position = animated_sprite.position
+	animated_sprite.global_position.y = -100  
+	animated_sprite.visible = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(animated_sprite, "position", target_position, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	await tween.finished
+	
+	speed = 200
+	

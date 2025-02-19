@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://siaqwg2ea8p8" path="res://Assets/Common/Next.png" id="8_t4prk"]
 [ext_resource type="Texture2D" uid="uid://d23bppmlqaiuh" path="res://Assets/Common/Back button.png" id="9_kvtxu"]
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/back_button.gd" id="10_uviqc"]
-[ext_resource type="Script" path="res://addons/radial_progress/RadialProgress.gd" id="11_hnq6u"]
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/start_ui.gd" id="12_gel8m"]
 [ext_resource type="Texture2D" uid="uid://bgtweva1ih6xb" path="res://Assets/Stages/Stage3incomplete.png" id="13_2cfmb"]
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/win_ui.gd" id="14_rkgru"]
@@ -19,6 +18,8 @@
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 3/death_zone.gd" id="17_jmn6l"]
 [ext_resource type="AudioStream" uid="uid://bdirvunnr7eil" path="res://Assets/Sounds/win.wav" id="18_a4x5k"]
 [ext_resource type="AudioStream" uid="uid://cxi1eg3ytw5lb" path="res://Assets/Sounds/lose.wav" id="19_7ll6u"]
+[ext_resource type="VideoStream" path="res://Assets/Common/hourglass.ogv" id="19_t050m"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 3/timer.gd" id="20_idxc7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0354m"]
 shader = ExtResource("6_vqcai")
@@ -26,15 +27,11 @@ shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
 shader_parameter/threshold = 0.713
 shader_parameter/smoothness = 0.2
 
-[sub_resource type="SystemFont" id="SystemFont_oocic"]
-subpixel_positioning = 0
-
-[sub_resource type="LabelSettings" id="LabelSettings_tm06d"]
-font = SubResource("SystemFont_oocic")
-font_size = 25
-outline_color = Color(0.89007, 0.8924, 0.708932, 1)
-shadow_size = 0
-shadow_color = Color(0, 0.254902, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g61xn"]
+shader = ExtResource("6_vqcai")
+shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
+shader_parameter/threshold = 0.5
+shader_parameter/smoothness = 0.1
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_rh7qr")
@@ -107,40 +104,6 @@ script = ExtResource("10_uviqc")
 
 [node name="Game Timer" type="Timer" parent="."]
 
-[node name="Timer UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1133.0
-offset_top = -597.0
-offset_right = 1231.0
-offset_bottom = -330.0
-
-[node name="TimerLabel" type="Label" parent="Timer UI"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 632.0
-offset_right = 115.0
-offset_bottom = 694.0
-text = "0
-"
-label_settings = SubResource("LabelSettings_tm06d")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RadialProgress" type="Control" parent="Timer UI"]
-anchors_preset = 0
-offset_left = 72.0
-offset_top = 664.0
-offset_right = 112.0
-offset_bottom = 704.0
-script = ExtResource("11_hnq6u")
-max_value = 30.0
-radius = 35.0
-thickness = 6.0
-bg_color = Color(0.501961, 0.501961, 0.501961, 0.313726)
-bar_color = Color(0.955754, 0.639961, 0.794724, 1)
-ring = true
-
 [node name="Start UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -198,6 +161,21 @@ volume_db = -20.0
 [node name="Lose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_7ll6u")
 volume_db = -20.0
+
+[node name="Timer" type="VideoStreamPlayer" parent="."]
+process_mode = 1
+top_level = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_g61xn")
+offset_left = 1304.0
+offset_top = 16.0
+offset_right = 1480.0
+offset_bottom = 192.0
+stream = ExtResource("19_t050m")
+autoplay = true
+paused = true
+expand = true
+script = ExtResource("20_idxc7")
 
 [connection signal="timeout" from="Enemy Spawn" to="." method="_on_enemy_spawn_timeout"]
 [connection signal="pressed" from="Tutorial Control/Next Button" to="Tutorial Control" method="_on_next_button_pressed"]

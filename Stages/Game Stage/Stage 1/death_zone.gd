@@ -16,6 +16,8 @@ func _on_area_entered(area: Area2D) -> void:
 			Globalvars.player1_dead = true
 			fade_out_and_move(character1)
 			character1.speed = character1.speed / 4
+			character1.knockback_force = 0
+			character1.knockback_duration = 0
 
 	elif area.name == "Character 2":
 		if not Globalvars.player2_dead:
@@ -23,13 +25,15 @@ func _on_area_entered(area: Area2D) -> void:
 			Globalvars.player2_dead = true
 			fade_out_and_move(character2)
 			character2.speed = character2.speed / 4
+			character2.knockback_force = 0
+			character2.knockback_duration = 0
 
 	if Globalvars.player1_dead and Globalvars.player2_dead:
 		await get_tree().create_timer(1.0).timeout
 		if not lost:
 			lose.play()
 		lost = true
-		Transition.zoom_to_scene("res://Stages/Game Stage/Stage 2/Level2.tscn")
+		Transition.zoom_to_scene("res://Stages/Game Stage/Stage 1/Level1.tscn")
 
 func fade_out_and_move(target: Node) -> void:
 	if splash_scene:

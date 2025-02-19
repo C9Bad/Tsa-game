@@ -11,7 +11,7 @@ func kill_enemy(enemy: Node) -> void:
 	
 	if splash_scene:
 		var splash = splash_scene.instantiate()
-		get_tree().current_scene.add_child(splash)
+		get_tree().current_scene.call_deferred("add_child", splash)
 
 		var enemy_width: float = 0.0
 		var enemy_height: float = 0.0

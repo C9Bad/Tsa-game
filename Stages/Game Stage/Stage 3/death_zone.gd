@@ -13,6 +13,8 @@ func _on_area_entered(area: Area2D) -> void:
 		Globalvars.player1_dead = true
 		fade_out_and_spin(character1)
 		character1.speed = 0
+		character1.knockback_force = 0
+		character1.knockback_duration = 0
 
 	elif area.name == "Character 2":
 		if Globalvars.player2_dead == false:
@@ -20,6 +22,8 @@ func _on_area_entered(area: Area2D) -> void:
 		Globalvars.player2_dead = true
 		fade_out_and_spin(character2)
 		character2.speed = 0
+		character2.knockback_force = 0
+		character2.knockback_duration = 0
 
 	# Check if both players are dead
 	if Globalvars.player1_dead and Globalvars.player2_dead:
