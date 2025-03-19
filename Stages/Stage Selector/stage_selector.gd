@@ -35,17 +35,17 @@ func lock_unavailable_stages():
 	button3.disabled = not stage3_unlocked
 
 func _on_button_1_pressed() -> void:
-	Transition.zoom_to_scene("res://Stages/Game Stage/Stage 1/Level1.tscn")
+	Transition.zoom_to_scene("res://Stages/Story Stage/Story1/StoryPart1.tscn")
 
 func _on_button_2_pressed() -> void:
 	if button2.disabled:
 		return  # Prevent clicking when locked
-	Transition.zoom_to_scene("res://Stages/Game Stage/Stage 2/Level2.tscn")
+	Transition.zoom_to_scene("res://Stages/Story Stage/Story2/StoryPart2.tscn")
 
 func _on_button_3_pressed() -> void:
 	if button3.disabled:
 		return  # Prevent clicking when locked
-	Transition.zoom_to_scene("res://Stages/Game Stage/Stage 3/Level3.tscn")
+	Transition.zoom_to_scene("res://Stages/Story Stage/Story3/StoryPart3.tscn")
 
 func _on_stage_1_mouse_entered() -> void:
 	star1.visible = true

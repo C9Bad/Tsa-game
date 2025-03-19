@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://crik77adbsgk3"]
+[gd_scene load_steps=28 format=3 uid="uid://crik77adbsgk3"]
 
 [ext_resource type="Script" path="res://Entities/LocalPlayers/Character 2/Chararcter 2.gd" id="1_hgoid"]
 [ext_resource type="Texture2D" uid="uid://0fmoq3f4tui6" path="res://Assets/Characters/Player2.png" id="2_a00in"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuqir"]
-size = Vector2(21, 12.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcfuu"]
+radius = 12.0
+height = 62.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcxo2"]
 atlas = ExtResource("2_a00in")
@@ -185,17 +186,12 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcfuu"]
-radius = 12.0
-height = 62.0
-
-[node name="Character 2" type="Area2D"]
-collision_mask = 2
+[node name="Character 2" type="CharacterBody2D"]
+collision_mask = 18
 script = ExtResource("1_hgoid")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 41.25)
-shape = SubResource("RectangleShape2D_tuqir")
+[node name="Hitbox2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pcfuu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -205,11 +201,3 @@ scale = Vector2(0.28125, 0.28125)
 sprite_frames = SubResource("SpriteFrames_2g51d")
 animation = &"side"
 frame_progress = 0.145188
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_pcfuu")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,10 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://bwv6muafhj4nf"]
+[gd_scene load_steps=31 format=3 uid="uid://bwv6muafhj4nf"]
 
 [ext_resource type="Script" path="res://Entities/LocalPlayers/Character 1/Character 1.gd" id="1_li0vu"]
 [ext_resource type="Texture2D" uid="uid://6voyvnhxjx5c" path="res://Assets/Characters/Player1.png" id="2_i2mpq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuqir"]
-size = Vector2(23, 15.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xijbb"]
 atlas = ExtResource("2_i2mpq")
@@ -206,17 +203,13 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g8a27"]
-radius = 22.0
-height = 60.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rgx8"]
+radius = 20.0
+height = 58.0
 
-[node name="Character 1" type="Area2D"]
-collision_mask = 2
+[node name="Character 1" type="CharacterBody2D"]
+collision_mask = 18
 script = ExtResource("1_li0vu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 39.75)
-shape = SubResource("RectangleShape2D_tuqir")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -227,11 +220,5 @@ sprite_frames = SubResource("SpriteFrames_6vlxq")
 animation = &"side"
 frame_progress = 0.738287
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_g8a27")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6rgx8")

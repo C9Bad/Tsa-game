@@ -149,6 +149,7 @@ stream = ExtResource("17_k71un")
 volume_db = -20.67
 
 [node name="EnemyDeathZone" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("17_lay7t")
@@ -158,12 +159,13 @@ position = Vector2(-48, -16)
 polygon = PackedVector2Array(152, 432, 152, 328, 240, 216, 416, 128, 592, 80, 736, 72, 896, 56, 1040, 56, 1280, -72, 1688, -120, 1808, 0, 1864, 304, 1808, 688, 1792, 936, 1496, 1056, 1184, 1064, 960, 1032, 864, 1040, 216, 992, 104, 656, 232, 576, 496, 496)
 
 [node name="DeathZone" type="Area2D" parent="."]
-visible = false
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("13_0y6rh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeathZone"]
-position = Vector2(-16, -16)
-polygon = PackedVector2Array(128, 320, 128, 456, 488, 520, 80, 664, 80, 768, -136, 768, -128, -8, 1280, 0, 1432, 168, 1176, 80, 1104, 64, 992, 56, 832, 56, 736, 72, 632, 88, 544, 104, 488, 120, 424, 144, 336, 184, 264, 232, 192, 272, 168, 288)
+position = Vector2(-40, -56)
+polygon = PackedVector2Array(128, 320, 128, 496, 504, 552, 80, 656, 80, 800, -136, 768, -128, -8, 1280, 0, 1432, 168, 1176, 80, 1104, 64, 992, 56, 832, 56, 736, 72, 632, 88, 544, 104, 488, 120, 424, 144, 336, 184, 264, 232, 192, 272, 168, 288)
 
 [node name="Win" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_bm6xg")
@@ -196,4 +198,4 @@ script = ExtResource("21_ynwpn")
 [connection signal="pressed" from="Start UI/Retry" to="Start UI" method="_on_retry_pressed"]
 [connection signal="pressed" from="Win UI/Exit" to="Win UI" method="_on_exit_pressed"]
 [connection signal="area_exited" from="EnemyDeathZone" to="EnemyDeathZone" method="_on_area_exited"]
-[connection signal="area_entered" from="DeathZone" to="DeathZone" method="_on_area_entered"]
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]

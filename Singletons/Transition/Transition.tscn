@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw73p47we5tln"]
+[gd_scene load_steps=7 format=3 uid="uid://dw73p47we5tln"]
 
 [ext_resource type="Script" path="res://Singletons/Transition/Transition.gd" id="1_tjd2q"]
 [ext_resource type="Shader" path="res://Circle.gdshader" id="2_n4iu2"]
 [ext_resource type="Texture2D" uid="uid://b6ox1jcqwm73p" path="res://Assets/Common/1x1.png" id="3_a6ums"]
+[ext_resource type="AudioStream" uid="uid://dy2rx3x662n28" path="res://Assets/Sounds/transition-rev.wav" id="4_kgotu"]
+[ext_resource type="AudioStream" uid="uid://brdxw6lue0bsk" path="res://Assets/Sounds/transition.wav" id="5_w2c6l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r0b56"]
 shader = ExtResource("2_n4iu2")
@@ -26,3 +28,13 @@ material = SubResource("ShaderMaterial_r0b56")
 position = Vector2(320, 180)
 scale = Vector2(700, 700)
 texture = ExtResource("3_a6ums")
+
+[node name="OutSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kgotu")
+volume_db = -20.0
+attenuation = 1.03527
+
+[node name="InSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_w2c6l")
+volume_db = -20.483
+attenuation = 0.0947323

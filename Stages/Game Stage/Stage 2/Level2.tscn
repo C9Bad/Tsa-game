@@ -42,7 +42,8 @@ wait_time = 0.7
 autostart = true
 
 [node name="Game Background" type="VideoStreamPlayer" parent="."]
-offset_right = 1280.0
+offset_left = 1.0
+offset_right = 1281.0
 offset_bottom = 720.0
 stream = ExtResource("2_7bluq")
 autoplay = true
@@ -51,7 +52,7 @@ loop = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Character 2" parent="." groups=["player"] instance=ExtResource("3_hrd04")]
-position = Vector2(511, 212)
+position = Vector2(546, 321)
 speed = 0.0
 
 [node name="Character 1" parent="." groups=["player"] instance=ExtResource("4_pqx1m")]
@@ -150,6 +151,8 @@ volume_db = -20.67
 
 [node name="DeathZone" type="Area2D" parent="."]
 visible = false
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("17_gljeo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeathZone"]
@@ -189,6 +192,15 @@ paused = true
 expand = true
 script = ExtResource("21_rdr37")
 
+[node name="Border" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
+position = Vector2(29, -47)
+polygon = PackedVector2Array(-28, 217, -31, 768, 1254, 765, 1252, 5, 1282, -5, 1254, 363, 1234, 410, 1136, 371, 1034, 384, 970, 369, 938, 322, 885, 306, 796, 286, 773, 270, 730, 267, 688.95, 306.768, 651, 316, 570, 346, 428, 289, 402, 261, 262, 244, 215, 286, 122, 286, 35, 305, -4, 263, -208, -145, 1761, -164, 1572, 960, -359, 928, -83, -199)
+
 [connection signal="timeout" from="Enemy Spawn" to="." method="_on_enemy_spawn_timeout"]
 [connection signal="pressed" from="Tutorial Control/Next Button" to="Tutorial Control" method="_on_next_button_pressed"]
 [connection signal="pressed" from="Back/Back Button" to="Back/Back Button" method="_on_pressed"]
@@ -197,4 +209,5 @@ script = ExtResource("21_rdr37")
 [connection signal="pressed" from="Start UI/Retry" to="Start UI" method="_on_retry_pressed"]
 [connection signal="pressed" from="Win UI/Exit" to="Win UI" method="_on_exit_pressed"]
 [connection signal="area_entered" from="DeathZone" to="DeathZone" method="_on_area_entered"]
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
 [connection signal="area_exited" from="EnemyDeathZone" to="EnemyDeathZone" method="_on_area_exited"]

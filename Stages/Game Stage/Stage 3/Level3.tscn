@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/back_button.gd" id="10_uviqc"]
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/start_ui.gd" id="12_gel8m"]
 [ext_resource type="Texture2D" uid="uid://bgtweva1ih6xb" path="res://Assets/Stages/Stage3incomplete.png" id="13_2cfmb"]
-[ext_resource type="Script" path="res://Stages/Game Stage/Stage 1/win_ui.gd" id="14_rkgru"]
+[ext_resource type="Script" path="res://Stages/Game Stage/Stage 3/win_ui.gd" id="13_io22m"]
 [ext_resource type="Texture2D" uid="uid://dropmgpbltl55" path="res://Assets/Stages/Stage3complete.png" id="15_5kuvy"]
 [ext_resource type="AudioStream" uid="uid://dhjxxfpcdb6i6" path="res://Assets/Sounds/deathSound.ogg" id="16_ckfwg"]
 [ext_resource type="Script" path="res://Stages/Game Stage/Stage 3/death_zone.gd" id="17_jmn6l"]
@@ -129,7 +129,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("14_rkgru")
+script = ExtResource("13_io22m")
 
 [node name="Picture" type="Sprite2D" parent="Win UI"]
 position = Vector2(744, 360)
@@ -148,11 +148,12 @@ stream = ExtResource("16_ckfwg")
 volume_db = -20.67
 
 [node name="DeathZone" type="Area2D" parent="."]
-visible = false
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("17_jmn6l")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DeathZone"]
-polygon = PackedVector2Array(605, 157, 439, 189, 415, 276, 466, 330, 503, 379, 645, 405, 781, 366, 814, 321, 863, 289, 855, 195, 738, 178, 683, 150, 588, 154, 487, 154, 408, 123, 274, -62, 1398, -55, 1397, 799, -66, 769, -50, -55, 275, -62)
+polygon = PackedVector2Array(608, 112, 408, 152, 415, 276, 466, 330, 503, 379, 645, 405, 781, 366, 814, 321, 863, 289, 864, 152, 792, 128, 696, 104, 624, 96, 480, 128, 400, 104, 274, -62, 1398, -55, 1397, 799, -66, 769, -50, -55, 275, -62)
 
 [node name="Win" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_a4x5k")
@@ -184,4 +185,4 @@ script = ExtResource("20_idxc7")
 [connection signal="timeout" from="Game Timer" to="DeathZone" method="_on_game_timer_timeout"]
 [connection signal="pressed" from="Start UI/Retry" to="Start UI" method="_on_retry_pressed"]
 [connection signal="pressed" from="Win UI/Exit" to="Win UI" method="_on_exit_pressed"]
-[connection signal="area_entered" from="DeathZone" to="DeathZone" method="_on_area_entered"]
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]

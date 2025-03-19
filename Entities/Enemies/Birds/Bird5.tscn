@@ -3,16 +3,31 @@
 [ext_resource type="Texture2D" uid="uid://cr7x0xjmefrk1" path="res://Assets/Enemys/Enemy_PurpleBird.png" id="1_uy4v8"]
 
 [sub_resource type="GDScript" id="GDScript_048ps"]
-script/source = "extends Area2D
+script/source = "extends CharacterBody2D
 
-# You can change the enemy's speed in the Inspector
 @export var speed: float = 200.0
+@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-func _process(delta: float) -> void:
-	position.x -= speed * delta  # Moves at 'speed' pixels per second
+func _physics_process(delta: float) -> void:
+	# Set constant left movement velocity
+	velocity = Vector2.LEFT * speed
+	
+	# Move and slide with collision detection
+	move_and_slide()
+	
+	# Destroy when off-screen (adjust -50 to match your screen needs)
+	if position.x < -50:
+		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+
+# Function to stop the enemy's animation
+func stop_animation() -> void:
+	if anim_sprite:
+		var current_frame = anim_sprite.frame
+		anim_sprite.stop()  # stops the animation (freezes on current frame)
+		anim_sprite.frame = current_frame  # ensures it stays on that frame
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4y1r"]
@@ -89,8 +104,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Enemy" type="Area2D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
+collision_mask = 0
 script = SubResource("GDScript_048ps")
 speed = 350.0
 
